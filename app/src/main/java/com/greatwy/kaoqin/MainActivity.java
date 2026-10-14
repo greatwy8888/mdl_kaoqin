@@ -39,6 +39,7 @@ public class MainActivity extends Activity {
     private class NoteStorage {
         @JavascriptInterface public String getNote(String key){return notePrefs.contains(key)?notePrefs.getString(key,""):null;}
         @JavascriptInterface public void saveNote(String key,String value){notePrefs.edit().putString(key,value).putBoolean("manual_"+key,true).apply();}
+        @JavascriptInterface public void saveAutoNote(String key,String value){notePrefs.edit().putString(key,value).putBoolean("manual_"+key,false).apply();}
         @JavascriptInterface public void removeNote(String key){notePrefs.edit().remove(key).remove("manual_"+key).apply();}
         @JavascriptInterface public boolean isManualNote(String key){return notePrefs.getBoolean("manual_"+key,false);}
         @JavascriptInterface public String getPeople(){return peoplePrefs.getString("people","[]");}
